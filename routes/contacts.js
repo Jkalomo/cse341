@@ -1,12 +1,27 @@
 const express = require('express');
+const Contact = require('../models/contact');
 const router = express.Router();
-const { getAllContacts, getContact } = require('../controllers/contactsController');
 
 // GET all contacts
-router.get('/', getAllContacts);
+router.get('/', async (req, res) => {
+  try {
+    const contacts = await Contact.find();
+    res.json(contacts);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 
-// GET a single contact by id
-router.get('/:id', getContact);
+// GET one contact by ID
+router.get('/:id', async (req, res) => {
+  try {
+    const contact = await Contact.findById(req.params.id);
+    if (!contact) return res.status(404).json({ message: 'Contact not found' });
+    res.json(contact);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 
 module.exports = router;
 

@@ -1,31 +1,34 @@
+require('dotenv').config();
 const express = require('express');
-const cors = require('cors');
-const helmet = require('helmet');
-const morgan = require('morgan');
-const dotenv = require('dotenv');
-const { connectDB } = require('./db/connect');
+const mongoose = require('mongoose');
 const contactsRoutes = require('./routes/contacts');
-
-dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
-app.use(cors());
-app.use(helmet());
-app.use(morgan('dev'));
+// Middleware to parse JSON
 app.use(express.json());
 
-// Routes
+// Root route (optional, just for Render)
+app.get('/', (req, res) => {
+  res.send('✅ Contacts API is running. Try /api/contacts');
+});
+
+// Use contacts routes
 app.use('/api/contacts', contactsRoutes);
 
-// Start server
-connectDB().then(() => {
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+// Connect to MongoDB
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => {
+    console.log('✅ MongoDB connected');
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running on port ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error('❌ MongoDB connection error:', err);
   });
-}).catch(err => console.log(err));
+
 
 
 
