@@ -1,27 +1,31 @@
-// server.js
-require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
+const helmet = require('helmet');
+const morgan = require('morgan');
+const dotenv = require('dotenv');
 const { connectDB } = require('./db/connect');
-const contactsRouter = require('./routes/contacts');
+const contactsRoutes = require('./routes/contacts');
+
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
+app.use(cors());
+app.use(helmet());
+app.use(morgan('dev'));
 app.use(express.json());
 
 // Routes
-app.use('/api/contacts', contactsRouter);
+app.use('/api/contacts', contactsRoutes);
 
-// Root route
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
+// Start server
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}).catch(err => console.log(err));
 
-// Connect to MongoDB and start server
-connectDB()
-  .then(() => {
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-  })
-  .catch((err) => console.error(err));
+
 
