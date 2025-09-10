@@ -6,7 +6,7 @@ GET http://localhost:8080/contacts
 
 ### Get single contact by ID
 # Replace the ID below with an actual contact ID from your database
-GET http://localhost:8080/contacts/507f1f77bcf86cd799439011
+GET http://localhost:8080/contacts/68c12342f8bd97824bd0617e
 
 ### Test with invalid ID format
 GET http://localhost:8080/contacts/invalid-id
@@ -19,11 +19,11 @@ GET http://localhost:8080/contacts/507f1f77bcf86cd799439012
 ###
 
 ### Test production server is running
-GET https://your-app-name.onrender.com/
+GET https://cse341-hwv1.onrender.com/
 
 ### Get all contacts from production
-GET https://your-app-name.onrender.com/contacts
+GET https://cse341-hwv1.onrender.com/contacts
 
 ### Get single contact by ID from production
 # Replace the ID and URL with your actual values
-GET https://your-app-name.onrender.com/contacts/507f1f77bcf86cd799439011
+GEThttps://cse341-hwv1.onrender.com/contacts/68c12342f8bd97824bd0617e
