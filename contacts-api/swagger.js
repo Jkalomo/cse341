@@ -12,7 +12,7 @@ const options = {
     servers: [
       {
         url: process.env.NODE_ENV === 'production' 
-          ? 'https://your-app-name.onrender.com' 
+          ? 'https://cse341-hwv1.onrender.com/' 
           : 'http://localhost:8080',
         description: process.env.NODE_ENV === 'production' ? 'Production server' : 'Development server',
       },
