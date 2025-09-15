@@ -68,7 +68,7 @@ GET http://localhost:8080/contacts/507f1f77bcf86cd799439011
 GET https://cse341-hwv1.onrender.com/
 
 ### Production - Create new contact
-POST https://cse341-hwv1.onrender.com/
+npPOST https://cse341-hwv1.onrender.com/
 Content-Type: application/json
 
 {
