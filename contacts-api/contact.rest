@@ -4,26 +4,77 @@ GET http://localhost:8080/
 ### Get all contacts
 GET http://localhost:8080/contacts
 
-### Get single contact by ID
-# Replace the ID below with an actual contact ID from your database
+### Get single contact by ID (replace with actual ID)
 GET http://localhost:8080/contacts/68c12342f8bd97824bd0617e
 
-### Test with invalid ID format
+### Create new contact
+POST http://localhost:8080/contacts
+Content-Type: application/json
+
+{
+  "firstName": "Alice",
+  "lastName": "Williams",
+  "email": "alice.williams@example.com",
+  "favoriteColor": "purple",
+  "birthday": "1988-12-05"
+}
+
+### Update contact (replace ID with actual contact ID)
+PUT http://localhost:8080/contacts/68c12342f8bd97824bd0617e
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe Updated",
+  "email": "john.doe.updated@example.com",
+  "favoriteColor": "navy",
+  "birthday": "1990-01-15"
+}
+
+### Delete contact (replace ID with actual contact ID)
+DELETE http://localhost:8080/contacts/68c1250df8bd97824bd06181
+
+### Test validation - missing fields
+POST http://localhost:8080/contacts
+Content-Type: application/json
+
+{
+  "firstName": "Test"
+}
+
+### Test validation - invalid email
+POST http://localhost:8080/contacts
+Content-Type: application/json
+
+{
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "invalid-email",
+  "favoriteColor": "blue",
+  "birthday": "1990-01-01"
+}
+
+### Test invalid ID format
 GET http://localhost:8080/contacts/invalid-id
 
-### Test with non-existent but valid ID
-GET http://localhost:8080/contacts/507f1f77bcf86cd799439012
+### Test non-existent ID
+GET http://localhost:8080/contacts/507f1f77bcf86cd799439011
 
 ###
-### PRODUCTION TESTS (replace with your actual Render URL)
+### PRODUCTION TESTS (replace with your Render URL)
 ###
 
-### Test production server is running
+### Production - Get all contacts
 GET https://cse341-hwv1.onrender.com/
 
-### Get all contacts from production
-GET https://cse341-hwv1.onrender.com/contacts
+### Production - Create new contact
+POST https://cse341-hwv1.onrender.com/
+Content-Type: application/json
 
-### Get single contact by ID from production
-# Replace the ID and URL with your actual values
-GEThttps://cse341-hwv1.onrender.com/contacts/68c12342f8bd97824bd0617e
+{
+  "firstName": "Production",
+  "lastName": "Test",
+  "email": "production.test@example.com",
+  "favoriteColor": "gold",
+  "birthday": "1995-06-15"
+}
