@@ -1,13 +1,18 @@
+### =========================
+### LOCAL TESTS
+### =========================
+
 ### Test server is running
 GET http://localhost:8080/
 
 ### Get all contacts
 GET http://localhost:8080/contacts
 
-### Get single contact by ID (replace with actual ID)
-GET http://localhost:8080/contacts/68c12342f8bd97824bd0617e
+### =========================
+### CREATE CONTACTS (Leads)
+### =========================
 
-### Create new contact
+### Lead 1 (ACTIVE – Showcase: Will update later)
 POST http://localhost:8080/contacts
 Content-Type: application/json
 
@@ -19,22 +24,96 @@ Content-Type: application/json
   "birthday": "1988-12-05"
 }
 
-### Update contact (replace ID with actual contact ID)
-PUT http://localhost:8080/contacts/68c12342f8bd97824bd0617e
+### Lead 2 (ACTIVE – Showcase: Will delete later)
+POST http://localhost:8080/contacts
 Content-Type: application/json
 
 {
-  "firstName": "John",
-  "lastName": "Doe Updated",
-  "email": "john.doe.updated@example.com",
-  "favoriteColor": "navy",
-  "birthday": "1990-01-15"
+  "firstName": "Michael",
+  "lastName": "Thompson",
+  "email": "michael.thompson@example.com",
+  "favoriteColor": "green",
+  "birthday": "1985-03-10"
 }
 
-### Delete contact (replace ID with actual contact ID)
-DELETE http://localhost:8080/contacts/68c1250df8bd97824bd06181
+### Lead 3 (Dormant – No updates/deletes)
+POST http://localhost:8080/contacts
+Content-Type: application/json
 
-### Test validation - missing fields
+{
+  "firstName": "Sophie",
+  "lastName": "Brown",
+  "email": "sophie.brown@example.com",
+  "favoriteColor": "pink",
+  "birthday": "1992-09-22"
+}
+
+### Lead 4 (ACTIVE – Showcase: Update later)
+POST http://localhost:8080/contacts
+Content-Type: application/json
+
+{
+  "firstName": "David",
+  "lastName": "Chen",
+  "email": "david.chen@example.com",
+  "favoriteColor": "blue",
+  "birthday": "1990-07-18"
+}
+
+### Lead 5 (Dormant – No changes)
+POST http://localhost:8080/contacts
+Content-Type: application/json
+
+{
+  "firstName": "Maria",
+  "lastName": "Garcia",
+  "email": "maria.garcia@example.com",
+  "favoriteColor": "red",
+  "birthday": "1987-11-02"
+}
+
+### =========================
+### UPDATE CONTACTS (ACTIVE SHOWCASE)
+### Replace {id_here} with Mongo ID returned after creation
+### =========================
+
+### Update Lead 1 (Alice)
+PUT http://localhost:8080/contacts/{id_here}
+Content-Type: application/json
+
+{
+  "firstName": "Alice",
+  "lastName": "Williams Updated",
+  "email": "alice.williams.new@example.com",
+  "favoriteColor": "teal",
+  "birthday": "1988-12-05"
+}
+
+### Update Lead 4 (David)
+PUT http://localhost:8080/contacts/{id_here}
+Content-Type: application/json
+
+{
+  "firstName": "David",
+  "lastName": "Chen Updated",
+  "email": "david.chen.new@example.com",
+  "favoriteColor": "orange",
+  "birthday": "1990-07-18"
+}
+
+### =========================
+### DELETE CONTACTS (ACTIVE SHOWCASE)
+### Replace {id_here} with Mongo ID
+### =========================
+
+### Delete Lead 2 (Michael)
+DELETE http://localhost:8080/contacts/{id_here}
+
+### =========================
+### VALIDATION TESTS
+### =========================
+
+### Missing fields
 POST http://localhost:8080/contacts
 Content-Type: application/json
 
@@ -42,7 +121,7 @@ Content-Type: application/json
   "firstName": "Test"
 }
 
-### Test validation - invalid email
+### Invalid email
 POST http://localhost:8080/contacts
 Content-Type: application/json
 
@@ -54,27 +133,117 @@ Content-Type: application/json
   "birthday": "1990-01-01"
 }
 
-### Test invalid ID format
+### Invalid ID format
 GET http://localhost:8080/contacts/invalid-id
 
-### Test non-existent ID
+### Non-existent ID
 GET http://localhost:8080/contacts/507f1f77bcf86cd799439011
 
-###
-### PRODUCTION TESTS (replace with your Render URL)
-###
+
+### =========================
+### PRODUCTION TESTS (Render)
+### =========================
 
 ### Production - Get all contacts
-GET https://cse341-hwv1.onrender.com/
+GET https://cse341-hwv1.onrender.com/contacts
 
-### Production - Create new contact
-npPOST https://cse341-hwv1.onrender.com/
+### =========================
+### CREATE CONTACTS (Leads)
+### =========================
+
+### Lead 1 (ACTIVE – Showcase: Will update later)
+POST https://cse341-hwv1.onrender.com/contacts
 Content-Type: application/json
 
 {
-  "firstName": "Production",
-  "lastName": "Test",
-  "email": "production.test@example.com",
-  "favoriteColor": "gold",
-  "birthday": "1995-06-15"
+  "firstName": "Alice",
+  "lastName": "Williams",
+  "email": "alice.williams@example.com",
+  "favoriteColor": "purple",
+  "birthday": "1988-12-05"
 }
+
+### Lead 2 (ACTIVE – Showcase: Will delete later)
+POST https://cse341-hwv1.onrender.com/contacts
+Content-Type: application/json
+
+{
+  "firstName": "Michael",
+  "lastName": "Thompson",
+  "email": "michael.thompson@example.com",
+  "favoriteColor": "green",
+  "birthday": "1985-03-10"
+}
+
+### Lead 3 (Dormant – No updates/deletes)
+POST https://cse341-hwv1.onrender.com/contacts
+Content-Type: application/json
+
+{
+  "firstName": "Sophie",
+  "lastName": "Brown",
+  "email": "sophie.brown@example.com",
+  "favoriteColor": "pink",
+  "birthday": "1992-09-22"
+}
+
+### Lead 4 (ACTIVE – Showcase: Update later)
+POST https://cse341-hwv1.onrender.com/contacts
+Content-Type: application/json
+
+{
+  "firstName": "David",
+  "lastName": "Chen",
+  "email": "david.chen@example.com",
+  "favoriteColor": "blue",
+  "birthday": "1990-07-18"
+}
+
+### Lead 5 (Dormant – No changes)
+POST https://cse341-hwv1.onrender.com/contacts
+Content-Type: application/json
+
+{
+  "firstName": "Maria",
+  "lastName": "Garcia",
+  "email": "maria.garcia@example.com",
+  "favoriteColor": "red",
+  "birthday": "1987-11-02"
+}
+
+### =========================
+### UPDATE CONTACTS (ACTIVE SHOWCASE)
+### Replace {id_here} with Mongo ID returned after creation
+### =========================
+
+### Update Lead 1 (Alice)
+PUT https://cse341-hwv1.onrender.com/contacts/{id_here}
+Content-Type: application/json
+
+{
+  "firstName": "Alice",
+  "lastName": "Williams Updated",
+  "email": "alice.williams.new@example.com",
+  "favoriteColor": "teal",
+  "birthday": "1988-12-05"
+}
+
+### Update Lead 4 (David)
+PUT https://cse341-hwv1.onrender.com/contacts/{id_here}
+Content-Type: application/json
+
+{
+  "firstName": "David",
+  "lastName": "Chen Updated",
+  "email": "david.chen.new@example.com",
+  "favoriteColor": "orange",
+  "birthday": "1990-07-18"
+}
+
+### =========================
+### DELETE CONTACTS (ACTIVE SHOWCASE)
+### Replace {id_here} with Mongo ID
+### =========================
+
+### Delete Lead 2 (Michael)
+DELETE https://cse341-hwv1.onrender.com/contacts/{id_here}
