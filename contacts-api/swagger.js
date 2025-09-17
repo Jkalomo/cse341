@@ -12,13 +12,13 @@ const options = {
     servers: [
       {
         url: process.env.NODE_ENV === 'production' 
-          ? 'https://cse341-hwv1.onrender.com/' 
+          ? 'https://cse341-hwv1.onrender.com' 
           : 'http://localhost:8080',
         description: process.env.NODE_ENV === 'production' ? 'Production server' : 'Development server',
       },
     ],
   },
-  apis: ['./routes/*.js'], // Path to the API docs
+  apis: ['./routes/*.js'],
 };
 
 const specs = swaggerJsdoc(options);

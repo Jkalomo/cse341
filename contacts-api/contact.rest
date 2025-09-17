@@ -1,17 +1,19 @@
 ### =========================
+### HEALTH CHECK
+### =========================
+GET http://localhost:8080/health
+
+### =========================
 ### LOCAL TESTS
 ### =========================
 
-### Test server is running
+### Test server info
 GET http://localhost:8080/
 
 ### Get all contacts
 GET http://localhost:8080/contacts
 
-### Get single contact by ID (replace with actual ID from your database)
-GET http://localhost:8080/contacts/68c12342f8bd97824bd0617e
-
-### Create new contact
+### Create Test Contact 1
 POST http://localhost:8080/contacts
 Content-Type: application/json
 
@@ -23,34 +25,43 @@ Content-Type: application/json
   "birthday": "1988-12-05"
 }
 
-### Create another contact for testing
+### Create Test Contact 2  
 POST http://localhost:8080/contacts
 Content-Type: application/json
 
 {
   "firstName": "Michael",
-  "lastName": "Thompson",
+  "lastName": "Thompson", 
   "email": "michael.thompson@example.com",
   "favoriteColor": "green",
   "birthday": "1985-03-10"
 }
 
-### Update contact (replace ID with actual contact ID)
-PUT http://localhost:8080/contacts/68c12342f8bd97824bd0617e
+### IMPORTANT: After creating contacts above, replace the IDs below with actual IDs from responses
+
+### Get specific contact (replace ID)
+GET http://localhost:8080/contacts/REPLACE_WITH_ACTUAL_ID
+
+### Update contact (replace ID)
+PUT http://localhost:8080/contacts/REPLACE_WITH_ACTUAL_ID
 Content-Type: application/json
 
 {
-  "firstName": "John",
-  "lastName": "Doe Updated",
-  "email": "john.doe.updated@example.com",
-  "favoriteColor": "navy",
-  "birthday": "1990-01-15"
+  "firstName": "Alice",
+  "lastName": "Williams Updated",
+  "email": "alice.updated@example.com",
+  "favoriteColor": "teal",
+  "birthday": "1988-12-05"
 }
 
-### Delete contact (replace with FULL MongoDB ID)
-DELETE http://localhost:8080/contacts/REPLACE_WITH_FULL_MONGODB_ID
+### Delete contact (replace ID)
+DELETE http://localhost:8080/contacts/REPLACE_WITH_ACTUAL_ID
 
-### Test validation - missing fields
+### =========================
+### VALIDATION TESTS
+### =========================
+
+### Missing fields test
 POST http://localhost:8080/contacts
 Content-Type: application/json
 
@@ -58,7 +69,7 @@ Content-Type: application/json
   "firstName": "Test"
 }
 
-### Test validation - invalid email
+### Invalid email test  
 POST http://localhost:8080/contacts
 Content-Type: application/json
 
@@ -66,27 +77,24 @@ Content-Type: application/json
   "firstName": "Test",
   "lastName": "User",
   "email": "invalid-email",
-  "favoriteColor": "blue",
+  "favoriteColor": "blue", 
   "birthday": "1990-01-01"
 }
 
-### Test invalid ID format
-GET http://localhost:8080/contacts/invalid-id
-
-### Test non-existent ID
-GET http://localhost:8080/contacts/507f1f77bcf86cd799439011
-
 ### =========================
-### PRODUCTION TESTS (CORRECTED)
+### PRODUCTION TESTS  
 ### =========================
 
-### Production - Test server
+### Production health check
+GET https://cse341-hwv1.onrender.com/health
+
+### Production server info
 GET https://cse341-hwv1.onrender.com/
 
 ### Production - Get all contacts
 GET https://cse341-hwv1.onrender.com/contacts
 
-### Production - Create new contact (CORRECTED endpoint)
+### Production - Create contact
 POST https://cse341-hwv1.onrender.com/contacts
 Content-Type: application/json
 
@@ -98,20 +106,20 @@ Content-Type: application/json
   "birthday": "1995-06-15"
 }
 
-### Production - Get single contact (replace with actual ID)
+### Production - Get contact (replace ID)
 GET https://cse341-hwv1.onrender.com/contacts/REPLACE_WITH_ACTUAL_ID
 
-### Production - Update contact (replace with actual ID)
+### Production - Update contact (replace ID)
 PUT https://cse341-hwv1.onrender.com/contacts/REPLACE_WITH_ACTUAL_ID
 Content-Type: application/json
 
 {
   "firstName": "Production",
   "lastName": "Updated",
-  "email": "production.updated@example.com",
+  "email": "production.updated@example.com", 
   "favoriteColor": "silver",
   "birthday": "1995-06-15"
 }
 
-### Production - Delete contact (replace with actual ID)
+### Production - Delete contact (replace ID)
 DELETE https://cse341-hwv1.onrender.com/contacts/REPLACE_WITH_ACTUAL_ID
