@@ -1,29 +1,19 @@
-### =========================
-### STEP-BY-STEP WORKFLOW
-### =========================
-### 1. Run health check first
-### 2. Get all contacts to see current state  
-### 3. Create contacts and note the returned IDs
-### 4. Use those IDs in subsequent tests
 
-### =========================
-### HEALTH & INFO
-### =========================
-
-### Health Check
+### 1. LOCAL - Health Check
 GET http://localhost:8080/health
 
-### Server Info
+### 2. LOCAL - API Root
 GET http://localhost:8080/
 
-### Current Contacts (ALWAYS RUN THIS FIRST)
+### 3. LOCAL - Get All Contacts (Check current state)
 GET http://localhost:8080/contacts
 
-### =========================
-### CREATE CONTACTS (Run these first, copy IDs from responses)
-### =========================
+### ========================================
+### LOCAL - CREATE CONTACTS (POST)
+### Copy the contactId from each response for use in UPDATE/DELETE
+### ========================================
 
-### Create Alice - COPY THE contactId FROM RESPONSE
+### 4. LOCAL - Create Contact 1 (Alice)
 POST http://localhost:8080/contacts
 Content-Type: application/json
 
@@ -35,118 +25,221 @@ Content-Type: application/json
   "birthday": "1988-12-05"
 }
 
-### Create Michael - COPY THE contactId FROM RESPONSE  
+### 5. LOCAL - Create Contact 2 (Michael)
 POST http://localhost:8080/contacts
 Content-Type: application/json
 
 {
   "firstName": "Michael",
   "lastName": "Thompson",
-  "email": "michael.thompson@example.com", 
+  "email": "michael.thompson@example.com",
   "favoriteColor": "green",
   "birthday": "1985-03-10"
 }
 
-### Create Test User - COPY THE contactId FROM RESPONSE
+### 6. LOCAL - Create Contact 3 (Sarah)
 POST http://localhost:8080/contacts
 Content-Type: application/json
 
 {
-  "firstName": "Test",
-  "lastName": "User",
-  "email": "test.user@example.com",
-  "favoriteColor": "blue", 
-  "birthday": "1990-01-01"
+  "firstName": "Sarah",
+  "lastName": "Johnson",
+  "email": "sarah.johnson@example.com",
+  "favoriteColor": "blue",
+  "birthday": "1992-07-15"
 }
 
-### =========================
-### AFTER CREATING CONTACTS ABOVE:
-### 1. Copy the contactId from each response
-### 2. Replace the placeholder IDs below with actual IDs
-### 3. Then run the tests below
-### =========================
+### ========================================
+### LOCAL - READ OPERATIONS (GET)
+### Replace REPLACE_WITH_ACTUAL_ID with real IDs from POST responses above
+### ========================================
 
-### Get Alice (replace with Alice's actual ID)
-GET http://localhost:8080/contacts/ALICE_ID_HERE
+### 7. LOCAL - Get Alice by ID
+GET http://localhost:8080/contacts/REPLACE_WITH_ACTUAL_ID
 
-### Get Michael (replace with Michael's actual ID)
-GET http://localhost:8080/contacts/MICHAEL_ID_HERE
+### 8. LOCAL - Get Michael by ID
+GET http://localhost:8080/contacts/REPLACE_WITH_ACTUAL_ID
 
-### Update Alice (replace with Alice's actual ID)
-PUT http://localhost:8080/contacts/ALICE_ID_HERE
+### 9. LOCAL - Get All Contacts Again (Verify 3 new contacts exist)
+GET http://localhost:8080/contacts
+
+### ========================================
+### LOCAL - UPDATE OPERATIONS (PUT)
+### Replace REPLACE_WITH_ACTUAL_ID with real IDs
+### ========================================
+
+### 10. LOCAL - Update Alice
+PUT http://localhost:8080/contacts/REPLACE_WITH_ACTUAL_ID
 Content-Type: application/json
 
 {
   "firstName": "Alice",
-  "lastName": "Williams UPDATED",
+  "lastName": "Williams-Updated",
   "email": "alice.updated@example.com",
   "favoriteColor": "teal",
   "birthday": "1988-12-05"
 }
 
-### Update Michael (replace with Michael's actual ID)  
-PUT http://localhost:8080/contacts/MICHAEL_ID_HERE
+### 11. LOCAL - Update Michael
+PUT http://localhost:8080/contacts/REPLACE_WITH_ACTUAL_ID
 Content-Type: application/json
 
 {
   "firstName": "Michael",
-  "lastName": "Thompson UPDATED", 
+  "lastName": "Thompson-Updated",
   "email": "michael.updated@example.com",
   "favoriteColor": "orange",
   "birthday": "1985-03-10"
 }
 
-### Delete Test User (replace with Test User's actual ID)
-DELETE http://localhost:8080/contacts/TEST_USER_ID_HERE
+### ========================================
+### LOCAL - DELETE OPERATIONS (DELETE)
+### Replace REPLACE_WITH_ACTUAL_ID with real IDs
+### ========================================
 
-### =========================
-### VALIDATION TESTS (These should fail as expected)
-### =========================
+### 12. LOCAL - Delete Sarah
+DELETE http://localhost:8080/contacts/REPLACE_WITH_ACTUAL_ID
 
-### Missing fields test (should return 400 error)
+### 13. LOCAL - Verify Sarah was deleted (should return 404)
+GET http://localhost:8080/contacts/REPLACE_WITH_ACTUAL_ID
+
+### ========================================
+### LOCAL - ERROR HANDLING TESTS
+### ========================================
+
+### 14. LOCAL - Test validation (missing fields - should return 400)
 POST http://localhost:8080/contacts
 Content-Type: application/json
 
 {
-  "firstName": "Test"
+  "firstName": "Incomplete"
 }
 
-### Invalid email test (should return 400 error)
+### 15. LOCAL - Test validation (invalid email - should return 400)
 POST http://localhost:8080/contacts
 Content-Type: application/json
 
 {
-  "firstName": "Test",
-  "lastName": "User",
-  "email": "invalid-email", 
+  "firstName": "Bad",
+  "lastName": "Email",
+  "email": "not-an-email",
   "favoriteColor": "blue",
   "birthday": "1990-01-01"
 }
 
-### Invalid ID test (should return 400 error)
+### 16. LOCAL - Test invalid ID format (should return 400)
 GET http://localhost:8080/contacts/invalid-id
 
-### Non-existent ID test (should return 404 error)  
+### 17. LOCAL - Test non-existent ID (should return 404)
 GET http://localhost:8080/contacts/507f1f77bcf86cd799439011
 
-### =========================
-### PRODUCTION TESTS
-### =========================
+### ========================================
+### PRODUCTION ENVIRONMENT TESTING
+### Replace "cse341-hwv1.onrender.com" with your actual Render URL
+### ========================================
 
-### Production Health
+### 18. PRODUCTION - Health Check
 GET https://cse341-hwv1.onrender.com/health
 
-### Production Current Contacts  
+### 19. PRODUCTION - API Root
+GET https://cse341-hwv1.onrender.com/
+
+### 20. PRODUCTION - Get All Contacts (Check current state)
 GET https://cse341-hwv1.onrender.com/contacts
 
-### Production Create Contact
+### ========================================
+### PRODUCTION - CREATE CONTACTS (POST)
+### Copy the contactId from each response for use in UPDATE/DELETE
+### ========================================
+
+### 21. PRODUCTION - Create Contact 1 (Production Alice)
 POST https://cse341-hwv1.onrender.com/contacts
 Content-Type: application/json
 
 {
   "firstName": "Production",
-  "lastName": "Test",
-  "email": "production.test@example.com",
+  "lastName": "Alice",
+  "email": "prod.alice@example.com",
   "favoriteColor": "gold",
-  "birthday": "1995-06-15"
+  "birthday": "1990-01-01"
 }
+
+### 22. PRODUCTION - Create Contact 2 (Production Bob)
+POST https://cse341-hwv1.onrender.com/contacts
+Content-Type: application/json
+
+{
+  "firstName": "Production",
+  "lastName": "Bob",
+  "email": "prod.bob@example.com",
+  "favoriteColor": "silver",
+  "birthday": "1985-05-15"
+}
+
+### ========================================
+### PRODUCTION - READ OPERATIONS (GET)
+### Replace REPLACE_WITH_PRODUCTION_ID with actual production IDs
+### ========================================
+
+### 23. PRODUCTION - Get Production Alice by ID
+GET https://cse341-hwv1.onrender.com/contacts/REPLACE_WITH_PRODUCTION_ID
+
+### 24. PRODUCTION - Get All Production Contacts
+GET https://cse341-hwv1.onrender.com/contacts
+
+### ========================================
+### PRODUCTION - UPDATE OPERATIONS (PUT)
+### Replace REPLACE_WITH_PRODUCTION_ID with actual production IDs
+### ========================================
+
+### 25. PRODUCTION - Update Production Alice
+PUT https://cse341-hwv1.onrender.com/contacts/REPLACE_WITH_PRODUCTION_ID
+Content-Type: application/json
+
+{
+  "firstName": "Production",
+  "lastName": "Alice-Updated",
+  "email": "prod.alice.updated@example.com",
+  "favoriteColor": "platinum",
+  "birthday": "1990-01-01"
+}
+
+### ========================================
+### PRODUCTION - DELETE OPERATIONS (DELETE)
+### Replace REPLACE_WITH_PRODUCTION_ID with actual production IDs
+### ========================================
+
+### 26. PRODUCTION - Delete Production Bob
+DELETE https://cse341-hwv1.onrender.com/contacts/REPLACE_WITH_PRODUCTION_ID
+
+### 27. PRODUCTION - Verify Bob was deleted (should return 404)
+GET https://cse341-hwv1.onrender.com/contacts/REPLACE_WITH_PRODUCTION_ID
+
+### ========================================
+### PRODUCTION - ERROR HANDLING TESTS
+### ========================================
+
+### 28. PRODUCTION - Test validation (missing fields - should return 400)
+POST https://cse341-hwv1.onrender.com/contacts
+Content-Type: application/json
+
+{
+  "firstName": "Incomplete"
+}
+
+### 29. PRODUCTION - Test invalid ID format (should return 400)
+GET https://cse341-hwv1.onrender.com/contacts/invalid-id
+
+### 30. PRODUCTION - Test non-existent ID (should return 404)
+GET https://cse341-hwv1.onrender.com/contacts/507f1f77bcf86cd799439011
+
+### ========================================
+### API DOCUMENTATION TESTS
+### ========================================
+
+### 31. LOCAL - Swagger Documentation
+GET http://localhost:8080/api-docs
+
+### 32. PRODUCTION - Swagger Documentation
+GET https://cse341-hwv1.onrender.com/api-docs
+
