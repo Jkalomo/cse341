@@ -1,19 +1,29 @@
 ### =========================
-### HEALTH CHECK
+### STEP-BY-STEP WORKFLOW
 ### =========================
+### 1. Run health check first
+### 2. Get all contacts to see current state  
+### 3. Create contacts and note the returned IDs
+### 4. Use those IDs in subsequent tests
+
+### =========================
+### HEALTH & INFO
+### =========================
+
+### Health Check
 GET http://localhost:8080/health
 
-### =========================
-### LOCAL TESTS
-### =========================
-
-### Test server info
+### Server Info
 GET http://localhost:8080/
 
-### Get all contacts
+### Current Contacts (ALWAYS RUN THIS FIRST)
 GET http://localhost:8080/contacts
 
-### Create Test Contact 1
+### =========================
+### CREATE CONTACTS (Run these first, copy IDs from responses)
+### =========================
+
+### Create Alice - COPY THE contactId FROM RESPONSE
 POST http://localhost:8080/contacts
 Content-Type: application/json
 
@@ -25,43 +35,75 @@ Content-Type: application/json
   "birthday": "1988-12-05"
 }
 
-### Create Test Contact 2  
+### Create Michael - COPY THE contactId FROM RESPONSE  
 POST http://localhost:8080/contacts
 Content-Type: application/json
 
 {
   "firstName": "Michael",
-  "lastName": "Thompson", 
-  "email": "michael.thompson@example.com",
+  "lastName": "Thompson",
+  "email": "michael.thompson@example.com", 
   "favoriteColor": "green",
   "birthday": "1985-03-10"
 }
 
-### IMPORTANT: After creating contacts above, replace the IDs below with actual IDs from responses
+### Create Test User - COPY THE contactId FROM RESPONSE
+POST http://localhost:8080/contacts
+Content-Type: application/json
 
-### Get specific contact (replace ID)
-GET http://localhost:8080/contacts/REPLACE_WITH_ACTUAL_ID
+{
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "test.user@example.com",
+  "favoriteColor": "blue", 
+  "birthday": "1990-01-01"
+}
 
-### Update contact (replace ID)
-PUT http://localhost:8080/contacts/REPLACE_WITH_ACTUAL_ID
+### =========================
+### AFTER CREATING CONTACTS ABOVE:
+### 1. Copy the contactId from each response
+### 2. Replace the placeholder IDs below with actual IDs
+### 3. Then run the tests below
+### =========================
+
+### Get Alice (replace with Alice's actual ID)
+GET http://localhost:8080/contacts/ALICE_ID_HERE
+
+### Get Michael (replace with Michael's actual ID)
+GET http://localhost:8080/contacts/MICHAEL_ID_HERE
+
+### Update Alice (replace with Alice's actual ID)
+PUT http://localhost:8080/contacts/ALICE_ID_HERE
 Content-Type: application/json
 
 {
   "firstName": "Alice",
-  "lastName": "Williams Updated",
+  "lastName": "Williams UPDATED",
   "email": "alice.updated@example.com",
   "favoriteColor": "teal",
   "birthday": "1988-12-05"
 }
 
-### Delete contact (replace ID)
-DELETE http://localhost:8080/contacts/REPLACE_WITH_ACTUAL_ID
+### Update Michael (replace with Michael's actual ID)  
+PUT http://localhost:8080/contacts/MICHAEL_ID_HERE
+Content-Type: application/json
+
+{
+  "firstName": "Michael",
+  "lastName": "Thompson UPDATED", 
+  "email": "michael.updated@example.com",
+  "favoriteColor": "orange",
+  "birthday": "1985-03-10"
+}
+
+### Delete Test User (replace with Test User's actual ID)
+DELETE http://localhost:8080/contacts/TEST_USER_ID_HERE
 
 ### =========================
-### VALIDATION TESTS
+### VALIDATION TESTS (These should fail as expected)
 ### =========================
 
-### Missing fields test
+### Missing fields test (should return 400 error)
 POST http://localhost:8080/contacts
 Content-Type: application/json
 
@@ -69,32 +111,35 @@ Content-Type: application/json
   "firstName": "Test"
 }
 
-### Invalid email test  
+### Invalid email test (should return 400 error)
 POST http://localhost:8080/contacts
 Content-Type: application/json
 
 {
   "firstName": "Test",
   "lastName": "User",
-  "email": "invalid-email",
-  "favoriteColor": "blue", 
+  "email": "invalid-email", 
+  "favoriteColor": "blue",
   "birthday": "1990-01-01"
 }
 
+### Invalid ID test (should return 400 error)
+GET http://localhost:8080/contacts/invalid-id
+
+### Non-existent ID test (should return 404 error)  
+GET http://localhost:8080/contacts/507f1f77bcf86cd799439011
+
 ### =========================
-### PRODUCTION TESTS  
+### PRODUCTION TESTS
 ### =========================
 
-### Production health check
+### Production Health
 GET https://cse341-hwv1.onrender.com/health
 
-### Production server info
-GET https://cse341-hwv1.onrender.com/
-
-### Production - Get all contacts
+### Production Current Contacts  
 GET https://cse341-hwv1.onrender.com/contacts
 
-### Production - Create contact
+### Production Create Contact
 POST https://cse341-hwv1.onrender.com/contacts
 Content-Type: application/json
 
@@ -105,21 +150,3 @@ Content-Type: application/json
   "favoriteColor": "gold",
   "birthday": "1995-06-15"
 }
-
-### Production - Get contact (replace ID)
-GET https://cse341-hwv1.onrender.com/contacts/REPLACE_WITH_ACTUAL_ID
-
-### Production - Update contact (replace ID)
-PUT https://cse341-hwv1.onrender.com/contacts/REPLACE_WITH_ACTUAL_ID
-Content-Type: application/json
-
-{
-  "firstName": "Production",
-  "lastName": "Updated",
-  "email": "production.updated@example.com", 
-  "favoriteColor": "silver",
-  "birthday": "1995-06-15"
-}
-
-### Production - Delete contact (replace ID)
-DELETE https://cse341-hwv1.onrender.com/contacts/REPLACE_WITH_ACTUAL_ID
