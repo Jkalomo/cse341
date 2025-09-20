@@ -1,0 +1,14 @@
+### Simple GET test
+GET http://localhost:8080/health
+
+### Simple POST test - MAKE SURE THERE'S A BLANK LINE AFTER Content-Type
+POST http://localhost:8080/contacts
+Content-Type: application/json
+
+{
+  "firstName": "TestPost11",
+  "lastName": "functio",
+  "email": "test11@example.com",
+  "favoriteColor": "blue",
+  "birthday": "1978-01-01"
+}

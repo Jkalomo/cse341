@@ -1,0 +1,1603 @@
+{
+  "info": {
+    "name": "API Collection - Grouped",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Contacts",
+      "item": [
+        {
+          "name": "Local",
+          "item": [
+            {
+              "name": "1. Health Check",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/health",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["health"]
+                }
+              }
+            },
+            {
+              "name": "2. API Root",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": ["{{baseUrl}}"],
+                  "path": [""]
+                }
+              }
+            },
+            {
+              "name": "3. Get All Contacts",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/contacts",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["contacts"]
+                }
+              }
+            },
+            {
+              "name": "4. Create Contact (Alice)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/contacts",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["contacts"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"Alice\",\n  \"lastName\": \"Williams\",\n  \"email\": \"alice.williams@example.com\",\n  \"favoriteColor\": \"purple\",\n  \"birthday\": \"1988-12-05\"\n}"
+                }
+              },
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "let responseData = pm.response.json();",
+                      "if (responseData._id) {",
+                      "    pm.environment.set(\"contactId\", responseData._id);",
+                      "} else if (responseData.contactId) {",
+                      "    pm.environment.set(\"contactId\", responseData.contactId);",
+                      "}"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "5. Create Contact (Michael)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/contacts",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["contacts"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"Michael\",\n  \"lastName\": \"Thompson\",\n  \"email\": \"michael.thompson@example.com\",\n  \"favoriteColor\": \"green\",\n  \"birthday\": \"1985-03-10\"\n}"
+                }
+              },
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "let responseData = pm.response.json();",
+                      "if (responseData._id) {",
+                      "    pm.environment.set(\"contactId\", responseData._id);",
+                      "} else if (responseData.contactId) {",
+                      "    pm.environment.set(\"contactId\", responseData.contactId);",
+                      "}"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "6. Create Contact (Sarah)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/contacts",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["contacts"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"Sarah\",\n  \"lastName\": \"Johnson\",\n  \"email\": \"sarah.johnson@example.com\",\n  \"favoriteColor\": \"blue\",\n  \"birthday\": \"1992-07-15\"\n}"
+                }
+              },
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "let responseData = pm.response.json();",
+                      "if (responseData._id) {",
+                      "    pm.environment.set(\"contactId\", responseData._id);",
+                      "} else if (responseData.contactId) {",
+                      "    pm.environment.set(\"contactId\", responseData.contactId);",
+                      "}"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "7. Get Contact by ID (Alice)",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/contacts/{{contactId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["contacts", "{{contactId}}"]
+                }
+              }
+            },
+            {
+              "name": "8. Get Contact by ID (Michael)",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/contacts/{{contactId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["contacts", "{{contactId}}"]
+                }
+              }
+            },
+            {
+              "name": "9. Get All Contacts Again",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/contacts",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["contacts"]
+                }
+              }
+            },
+            {
+              "name": "10. Update Contact (Alice)",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/contacts/{{contactId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["contacts", "{{contactId}}"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"Alice\",\n  \"lastName\": \"Williams-Updated\",\n  \"email\": \"alice.updated@example.com\",\n  \"favoriteColor\": \"teal\",\n  \"birthday\": \"1988-12-05\"\n}"
+                }
+              }
+            },
+            {
+              "name": "11. Update Contact (Michael)",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/contacts/{{contactId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["contacts", "{{contactId}}"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"Michael\",\n  \"lastName\": \"Thompson-Updated\",\n  \"email\": \"michael.updated@example.com\",\n  \"favoriteColor\": \"orange\",\n  \"birthday\": \"1985-03-10\"\n}"
+                }
+              }
+            },
+            {
+              "name": "12. Delete Contact (Sarah)",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/contacts/{{contactId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["contacts", "{{contactId}}"]
+                }
+              }
+            },
+            {
+              "name": "13. Verify Deleted Contact",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/contacts/{{contactId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["contacts", "{{contactId}}"]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Local - Error Handling",
+          "item": [
+            {
+              "name": "14. Test Validation (Missing Fields)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/contacts",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["contacts"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"Incomplete\"\n}"
+                }
+              }
+            },
+            {
+              "name": "15. Test Validation (Invalid Email)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/contacts",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["contacts"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"Bad\",\n  \"lastName\": \"Email\",\n  \"email\": \"not-an-email\",\n  \"favoriteColor\": \"blue\",\n  \"birthday\": \"1990-01-01\"\n}"
+                }
+              }
+            },
+            {
+              "name": "16. Test Invalid ID Format",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/contacts/invalid-id",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["contacts", "invalid-id"]
+                }
+              }
+            },
+            {
+              "name": "17. Test Non-existent ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/contacts/507f1f77bcf86cd799439011",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["contacts", "507f1f77bcf86cd799439011"]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Production",
+          "item": [
+            {
+              "name": "18. Health Check",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/health",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["health"]
+                }
+              }
+            },
+            {
+              "name": "19. API Root",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": ["{{baseUrl}}"],
+                  "path": [""]
+                }
+              }
+            },
+            {
+              "name": "20. Get All Contacts",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/contacts",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["contacts"]
+                }
+              }
+            },
+            {
+              "name": "21. Create Contact (Alice)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/contacts",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["contacts"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"Production\",\n  \"lastName\": \"Alice\",\n  \"email\": \"prod.alice@example.com\",\n  \"favoriteColor\": \"gold\",\n  \"birthday\": \"1990-01-01\"\n}"
+                }
+              },
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "let responseData = pm.response.json();",
+                      "if (responseData._id) {",
+                      "    pm.environment.set(\"contactId\", responseData._id);",
+                      "} else if (responseData.contactId) {",
+                      "    pm.environment.set(\"contactId\", responseData.contactId);",
+                      "}"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "22. Create Contact (Bob)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/contacts",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["contacts"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"Production\",\n  \"lastName\": \"Bob\",\n  \"email\": \"prod.bob@example.com\",\n  \"favoriteColor\": \"silver\",\n  \"birthday\": \"1985-05-15\"\n}"
+                }
+              },
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "let responseData = pm.response.json();",
+                      "if (responseData._id) {",
+                      "    pm.environment.set(\"contactId\", responseData._id);",
+                      "} else if (responseData.contactId) {",
+                      "    pm.environment.set(\"contactId\", responseData.contactId);",
+                      "}"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "23. Get Contact by ID (Alice)",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/contacts/{{contactId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["contacts", "{{contactId}}"]
+                }
+              }
+            },
+            {
+              "name": "24. Get All Contacts Again",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/contacts",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["contacts"]
+                }
+              }
+            },
+            {
+              "name": "25. Update Contact (Alice)",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/contacts/{{contactId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["contacts", "{{contactId}}"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"Production\",\n  \"lastName\": \"Alice-Updated\",\n  \"email\": \"prod.alice.updated@example.com\",\n  \"favoriteColor\": \"platinum\",\n  \"birthday\": \"1990-01-01\"\n}"
+                }
+              }
+            },
+            {
+              "name": "26. Delete Contact (Bob)",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/contacts/{{contactId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["contacts", "{{contactId}}"]
+                }
+              }
+            },
+            {
+              "name": "27. Verify Deleted Contact",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/contacts/{{contactId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["contacts", "{{contactId}}"]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Production - Error Handling",
+          "item": [
+            {
+              "name": "28. Test Validation (Missing Fields)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/contacts",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["contacts"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"Incomplete\"\n}"
+                }
+              }
+            },
+            {
+              "name": "29. Test Invalid ID Format",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/contacts/invalid-id",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["contacts", "invalid-id"]
+                }
+              }
+            },
+            {
+              "name": "30. Test Non-existent ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/contacts/507f1f77bcf86cd799439011",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["contacts", "507f1f77bcf86cd799439011"]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Local",
+          "item": [
+            {
+              "name": "1. Get All Users",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/users",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["users"]
+                }
+              }
+            },
+            {
+              "name": "2. Create User (Jane)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["users"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"jdoe\",\n  \"email\": \"jdoe@example.com\",\n  \"password\": \"password123\"\n}"
+                }
+              },
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "let responseData = pm.response.json();",
+                      "if (responseData._id) {",
+                      "    pm.environment.set(\"userId\", responseData._id);",
+                      "} else if (responseData.userId) {",
+                      "    pm.environment.set(\"userId\", responseData.userId);",
+                      "}"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "3. Get User by ID (Jane)",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/users/{{userId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["users", "{{userId}}"]
+                }
+              }
+            },
+            {
+              "name": "4. Update User (Jane)",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users/{{userId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["users", "{{userId}}"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"jdoe\",\n  \"email\": \"jdoe.updated@example.com\",\n  \"password\": \"newpass456\"\n}"
+                }
+              }
+            },
+            {
+              "name": "5. Delete User (Jane)",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/users/{{userId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["users", "{{userId}}"]
+                }
+              }
+            },
+            {
+              "name": "6. Verify Deleted User",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/users/{{userId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["users", "{{userId}}"]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Local - Error Handling",
+          "item": [
+            {
+              "name": "7. Test Validation (Missing Fields)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["users"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}"
+                }
+              }
+            },
+            {
+              "name": "8. Test Validation (Invalid Email)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["users"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"invalid\",\n  \"email\": \"not-an-email\",\n  \"password\": \"password123\"\n}"
+                }
+              }
+            },
+            {
+              "name": "9. Test Invalid ID Format",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/users/invalid-id",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["users", "invalid-id"]
+                }
+              }
+            },
+            {
+              "name": "10. Test Non-existent ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/users/507f1f77bcf86cd799439011",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["users", "507f1f77bcf86cd799439011"]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Production",
+          "item": [
+            {
+              "name": "11. Get All Users",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/users",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["users"]
+                }
+              }
+            },
+            {
+              "name": "12. Create User (John)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["users"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"jsmith\",\n  \"email\": \"jsmith@example.com\",\n  \"password\": \"prodpass789\"\n}"
+                }
+              },
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "let responseData = pm.response.json();",
+                      "if (responseData._id) {",
+                      "    pm.environment.set(\"userId\", responseData._id);",
+                      "} else if (responseData.userId) {",
+                      "    pm.environment.set(\"userId\", responseData.userId);",
+                      "}"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "13. Get User by ID (John)",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/users/{{userId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["users", "{{userId}}"]
+                }
+              }
+            },
+            {
+              "name": "14. Update User (John)",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users/{{userId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["users", "{{userId}}"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"jsmith\",\n  \"email\": \"jsmith.updated@example.com\",\n  \"password\": \"newprodpass012\"\n}"
+                }
+              }
+            },
+            {
+              "name": "15. Delete User (John)",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/users/{{userId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["users", "{{userId}}"]
+                }
+              }
+            },
+            {
+              "name": "16. Verify Deleted User",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/users/{{userId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["users", "{{userId}}"]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Production - Error Handling",
+          "item": [
+            {
+              "name": "17. Test Validation (Missing Fields)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["users"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}"
+                }
+              }
+            },
+            {
+              "name": "18. Test Invalid ID Format",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/users/invalid-id",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["users", "invalid-id"]
+                }
+              }
+            },
+            {
+              "name": "19. Test Non-existent ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/users/507f1f77bcf86cd799439011",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["users", "507f1f77bcf86cd799439011"]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Tasks",
+      "item": [
+        {
+          "name": "Local",
+          "item": [
+            {
+              "name": "1. Get All Tasks",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/tasks",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["tasks"]
+                }
+              }
+            },
+            {
+              "name": "2. Create Task (Homework)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tasks",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["tasks"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"Finish homework\",\n  \"description\": \"Complete CSE340 assignment\",\n  \"status\": \"pending\"\n}"
+                }
+              },
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "let responseData = pm.response.json();",
+                      "if (responseData._id) {",
+                      "    pm.environment.set(\"taskId\", responseData._id);",
+                      "} else if (responseData.taskId) {",
+                      "    pm.environment.set(\"taskId\", responseData.taskId);",
+                      "}"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "3. Get Task by ID (Homework)",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/tasks/{{taskId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["tasks", "{{taskId}}"]
+                }
+              }
+            },
+            {
+              "name": "4. Update Task (Homework)",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tasks/{{taskId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["tasks", "{{taskId}}"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"Finish homework\",\n  \"description\": \"Updated description\",\n  \"status\": \"done\"\n}"
+                }
+              }
+            },
+            {
+              "name": "5. Delete Task (Homework)",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/tasks/{{taskId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["tasks", "{{taskId}}"]
+                }
+              }
+            },
+            {
+              "name": "6. Verify Deleted Task",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/tasks/{{taskId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["tasks", "{{taskId}}"]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Local - Error Handling",
+          "item": [
+            {
+              "name": "7. Test Validation (Missing Fields)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tasks",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["tasks"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}"
+                }
+              }
+            },
+            {
+              "name": "8. Test Invalid ID Format",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/tasks/invalid-id",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["tasks", "invalid-id"]
+                }
+              }
+            },
+            {
+              "name": "9. Test Non-existent ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/tasks/507f1f77bcf86cd799439011",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["tasks", "507f1f77bcf86cd799439011"]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Production",
+          "item": [
+            {
+              "name": "10. Get All Tasks",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/tasks",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["tasks"]
+                }
+              }
+            },
+            {
+              "name": "11. Create Task (Report)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tasks",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["tasks"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"Prepare report\",\n  \"description\": \"Compile quarterly sales report\",\n  \"status\": \"pending\"\n}"
+                }
+              },
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "let responseData = pm.response.json();",
+                      "if (responseData._id) {",
+                      "    pm.environment.set(\"taskId\", responseData._id);",
+                      "} else if (responseData.taskId) {",
+                      "    pm.environment.set(\"taskId\", responseData.taskId);",
+                      "}"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "12. Get Task by ID (Report)",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/tasks/{{taskId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["tasks", "{{taskId}}"]
+                }
+              }
+            },
+            {
+              "name": "13. Update Task (Report)",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tasks/{{taskId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["tasks", "{{taskId}}"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"Prepare report\",\n  \"description\": \"Updated quarterly sales report\",\n  \"status\": \"done\"\n}"
+                }
+              }
+            },
+            {
+              "name": "14. Delete Task (Report)",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/tasks/{{taskId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["tasks", "{{taskId}}"]
+                }
+              }
+            },
+            {
+              "name": "15. Verify Deleted Task",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/tasks/{{taskId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["tasks", "{{taskId}}"]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Production - Error Handling",
+          "item": [
+            {
+              "name": "16. Test Validation (Missing Fields)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tasks",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["tasks"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}"
+                }
+              }
+            },
+            {
+              "name": "17. Test Invalid ID Format",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/tasks/invalid-id",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["tasks", "invalid-id"]
+                }
+              }
+            },
+            {
+              "name": "18. Test Non-existent ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/tasks/507f1f77bcf86cd799439011",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["tasks", "507f1f77bcf86cd799439011"]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Local",
+          "item": [
+            {
+              "name": "1. Get All Products",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/products",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["products"]
+                }
+              }
+            },
+            {
+              "name": "2. Create Product (Laptop)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/products",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["products"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Laptop\",\n  \"price\": 1200,\n  \"category\": \"Electronics\"\n}"
+                }
+              },
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "let responseData = pm.response.json();",
+                      "if (responseData._id) {",
+                      "    pm.environment.set(\"productId\", responseData._id);",
+                      "} else if (responseData.productId) {",
+                      "    pm.environment.set(\"productId\", responseData.productId);",
+                      "}"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "3. Get Product by ID (Laptop)",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/products/{{productId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["products", "{{productId}}"]
+                }
+              }
+            },
+            {
+              "name": "4. Update Product (Laptop)",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/products/{{productId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["products", "{{productId}}"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Laptop\",\n  \"price\": 999,\n  \"category\": \"Electronics\"\n}"
+                }
+              }
+            },
+            {
+              "name": "5. Delete Product (Laptop)",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/products/{{productId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["products", "{{productId}}"]
+                }
+              }
+            },
+            {
+              "name": "6. Verify Deleted Product",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/products/{{productId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["products", "{{productId}}"]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Local - Error Handling",
+          "item": [
+            {
+              "name": "7. Test Validation (Missing Fields)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/products",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["products"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}"
+                }
+              }
+            },
+            {
+              "name": "8. Test Invalid ID Format",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/products/invalid-id",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["products", "invalid-id"]
+                }
+              }
+            },
+            {
+              "name": "9. Test Non-existent ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/products/507f1f77bcf86cd799439011",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["products", "507f1f77bcf86cd799439011"]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Production",
+          "item": [
+            {
+              "name": "10. Get All Products",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/products",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["products"]
+                }
+              }
+            },
+            {
+              "name": "11. Create Product (Phone)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/products",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["products"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Smartphone\",\n  \"price\": 799,\n  \"category\": \"Electronics\"\n}"
+                }
+              },
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "let responseData = pm.response.json();",
+                      "if (responseData._id) {",
+                      "    pm.environment.set(\"productId\", responseData._id);",
+                      "} else if (responseData.productId) {",
+                      "    pm.environment.set(\"productId\", responseData.productId);",
+                      "}"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "12. Get Product by ID (Phone)",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/products/{{productId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["products", "{{productId}}"]
+                }
+              }
+            },
+            {
+              "name": "13. Update Product (Phone)",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/products/{{productId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["products", "{{productId}}"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Smartphone\",\n  \"price\": 699,\n  \"category\": \"Electronics\"\n}"
+                }
+              }
+            },
+            {
+              "name": "14. Delete Product (Phone)",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/products/{{productId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["products", "{{productId}}"]
+                }
+              }
+            },
+            {
+              "name": "15. Verify Deleted Product",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/products/{{productId}}",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["products", "{{productId}}"]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Production - Error Handling",
+          "item": [
+            {
+              "name": "16. Test Validation (Missing Fields)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/products",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["products"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}"
+                }
+              }
+            },
+            {
+              "name": "17. Test Invalid ID Format",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/products/invalid-id",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["products", "invalid-id"]
+                }
+              }
+            },
+            {
+              "name": "18. Test Non-existent ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/products/507f1f77bcf86cd799439011",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["products", "507f1f77bcf86cd799439011"]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Documentation",
+      "item": [
+        {
+          "name": "1. Swagger Docs (Local)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api-docs",
+              "host": ["{{baseUrl}}"],
+              "path": ["api-docs"]
+            }
+          }
+        },
+        {
+          "name": "2. Swagger Docs (Production)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api-docs",
+              "host": ["{{baseUrl}}"],
+              "path": ["api-docs"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
